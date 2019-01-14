@@ -19,7 +19,12 @@ import views
 
 urlpatterns = [
     url(r'^hello/', views.hello_handler),
-    # url(r'^index/$', views.blog1_main_handler),
-    url(r'^$', views.blog1_main_handler),
-    url(r'^article/(?P<article_id>[0-9]+)$', views.blog1_article_handler),
+    url(r'^$', views.article_list_page),
+    url(r'^article_content/(?P<article_id>[0-9]+)$', views.article_content_page, name='article_content'),
+    url(r'^article_edit_page/(?P<article_id>[0-9]+)$', views.article_edit_page, name='article_edit_page'),
+    url(r'^article_edit_action$', views.article_edit_action, name='article_edit_action'),
 ]
+
+
+
+
