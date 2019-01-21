@@ -74,14 +74,16 @@ class PlotMain(object):
 	    picname = self.folder + '/' + self.key + '.jpg'
 	    # 不显示横轴日期
 	    # plt.xticks([])
-	    # 显示所有横轴日期
-	    # plt.xticks(np.arrange(0, len(self.x)), self.x, rotation = 45)
-	    # 显示第一个和最后一个横轴日期
-	    plt.xticks(np.arange(0,len(self.x), step=len(self.x)-1), [self.x[0], self.x[-1]])
+	    if len(self.x) > 1:
+		# 显示第一个和最后一个横轴日期
+		plt.xticks(np.arange(0,len(self.x), step=len(self.x)-1), [self.x[0], self.x[-1]])
+	    if len(self.x) == 1:
+		# 显示所有横轴日期
+		plt.xticks(np.arange(0, len(self.x)), self.x)
 	    plt.savefig(picname)
 
 def processFolder(path, date1, date2):
-    folder = date1 + '-' + date2 + '-' + path.replace('/', '-')
+    folder = 'pictures' + '/' + date1 + '-' + date2 + '-' + path.replace('/', '-')
     if os.path.exists(folder):
         shutil.rmtree(folder)
     os.mkdir(folder)    
